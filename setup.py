@@ -39,17 +39,11 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 
-# Read in the setup_requires from the requirements.txt file.
-setup_requires = []
-with open('requirements.txt') as fh:
-    for r in fh:
-        if '#' in r:
-            r = r[:r.find('#')]
-        r = r.strip()
-        if not r:
-            continue
-        if r not in ('-e .',):
-            setup_requires.append(r)
+setup_requires = [
+    'setuptools>=42',
+    'setuptools_scm',
+    'wheel',
+]
 
 
 setuptools.setup(
@@ -82,7 +76,6 @@ setuptools.setup(
     setup_requires=setup_requires,
     install_requires=[
         'ply',
-        'pyjson',
     ],
     tests_require=[
         "pytest",
